@@ -43,7 +43,12 @@ public class Taller {
                 solucion.setSolucion(e);
             }
         }else{
-            // La poda
+
+            // La poda por limite inferior. Si ya se encontro solucion, poda cualquier rama que YA SUPERE el numero de maquinas encendidas
+            if (e.maquinasPrendidas >= solucion.getCantMaquinasEncendidas()) {
+                return;
+            }
+
             for (Maquina m : maquinasList) {
                 e.prender(m);
                 if (!poda(e, totalPiezas)){
